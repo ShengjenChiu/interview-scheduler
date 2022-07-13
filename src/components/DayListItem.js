@@ -19,19 +19,15 @@ export default function DayListItem(props) {
     } else {
       retStr = props.spots + " spots"; 
     }
-  
-    console.log('retStr-aft-if: ' + retStr);
-  
+    
     return retStr;
   };
-
-  console.log('formatSpots(): ' + formatSpots());
 
 
   return (
     <li onClick={() => props.setDay(props.name)}>
       <h2 className={dayClass}>{props.name}</h2> 
-      <h3 className={dayClass}>{formatSpots} remaining</h3>
+      <h3 className={dayClass}>{formatSpots()} remaining</h3>
     </li>
 
   );
