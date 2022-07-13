@@ -8,6 +8,9 @@ export default function Button(props) {
    ' button--danger': props.danger
   });
 
+console.log(`props: ${props.disabled}`);
+
+
   return (     
     <button 
       className={buttonClass}
