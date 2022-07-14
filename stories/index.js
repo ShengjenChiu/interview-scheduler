@@ -7,6 +7,7 @@ import "index.scss";
 import DayListItem from '../src/components/DayListItem.js';
 import DayList from '../src/components/DayList.js';
 import InterviewerListItem from '../src/components/InterviewerListItem.js';
+import InterviewerList from '../src/components/InterviewerList.js';
 
 import Button from "components/Button";
 

@@ -18,9 +18,7 @@ export default function InterviewerListItem(props) {
             src={props.avatar}
             alt={props.name}
           />
-          <h3>
-            {props.name}
-          </h3>
+          {props.name}
         </>
         :
         <img
