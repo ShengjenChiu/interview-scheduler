@@ -14,7 +14,8 @@ import Button from "components/Button";
 import Appointment from "components/Appointment/index.js";
 import Header from "components/Appointment/Header.js";
 import Empty from "components/Appointment/Empty.js";
-
+import Show from "components/Appointment/Show.js";
+import Confirm from "components/Appointment/Confirm.js";
 
 storiesOf("Button", module)
   .addParameters({
@@ -142,7 +143,12 @@ storiesOf("InterviewerList", module)
       onChange={action("setInterviewer")}
     />
   ));
-  
+
+
+const student = [
+  { id: 1, name: "Lydia Miller-Jones" }
+];
+
 
 storiesOf("Appointment", module)
   .addParameters({
@@ -166,5 +172,23 @@ storiesOf("Appointment", module)
   .add("Empty", () =>
     <Empty
       onAdd={action("onAdd")}
+    />
+  )
+  .add("Show", () =>
+    <Show
+      student={student[0].name}
+      interviewer={interviewer}
+      onEdit={action("onEdit")}
+      onDelete={action("onDelete")}
+
+    />
+  )
+  .add("Show", () =>
+    <Show
+      student={student[0].name}
+      interviewer={interviewer}
+      onEdit={action("onEdit")}
+      onDelete={action("onDelete")}
+
     />
   );
