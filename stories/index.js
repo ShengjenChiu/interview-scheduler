@@ -183,12 +183,11 @@ storiesOf("Appointment", module)
 
     />
   )
-  .add("Show", () =>
-    <Show
-      student={student[0].name}
-      interviewer={interviewer}
-      onEdit={action("onEdit")}
-      onDelete={action("onDelete")}
+  .add("Confirm", () =>
+    <Confirm
+      message="Delete the appointment?"
+      onConfirm={action("onConfirm")}
+      onCancel={action("onCancel")}
 
     />
   );
