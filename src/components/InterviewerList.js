@@ -7,8 +7,6 @@ export default function InterviewerList(props) {
 
   interviewersArr = props.interviewers.map(_interviewer => {
 
-console.log(props);
-
     return (
       <InterviewerListItem
         key={_interviewer.id}

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import "components/Application.scss";
 import DayList from "./DayList";
-import InterviewerList from "./InterviewerList";
+//import InterviewerList from "./InterviewerList";
 
 
 const days = [
@@ -35,14 +35,10 @@ const interviewers = [
 
 export default function Application() {
   const [day, setDay] = useState('Monday');
-  const [interviewer, setInterviewer] = useState({
-    id: 3,
-    name: 'Mildred Nazir',
-    avatar: "https://i.imgur.com/T2WwVfS.png"
-  });
+  // const [interviewer, setInterviewer] = useState(null);
 
   const setADay = () => setDay(days.name);
-  const setCurrentInterviewer = () => setInterviewer(interviewer.id);
+  //const setCurrentInterviewer = () => setInterviewer(interviewer.id);
 
   return (
     <main className="layout">
@@ -68,11 +64,11 @@ export default function Application() {
       </section>
       <section className="schedule">
         {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
-        <InterviewerList
+        {/* <InterviewerList
           interviewers={interviewers}
           value={interviewer}
           onChange={setCurrentInterviewer}
-        />
+        /> */}
       </section>
     </main>
   );
