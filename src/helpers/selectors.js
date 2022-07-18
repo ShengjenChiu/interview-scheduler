@@ -18,27 +18,25 @@ function getAppointmentsForDay(state, day) {
       }
     }
   }
-
   return resultsArr;
 }
 
 
 function getInterview(state, interview) {
-  const interviewObject = {};
+  const interviewersObj = state.interviewers;
+  let interviewerId = 0;
 
-  // interviewObject = {  
-  //   "student": "Lydia Miller-Jones",
-  //   "interviewer": {  
-  //     "id": 1,
-  //     "name": "Sylvia Palmer",
-  //     "avatar": "https://i.imgur.com/LpaY82x.png"
-  //   }
-  // };
+  if (!interview) {
+    return null;
+  } else {
+    interviewerId = interview.interviewer;
+  }
 
-  // const interviewObject = state.appointments.filter(appointment => appointment.id.interview === interview);
+  return {
+    student: interview.student,
+    interviewer: interviewersObj[interviewerId]
+  };
 
-
-  return ( interviewObject || null );
 }
 
 module.exports = {
