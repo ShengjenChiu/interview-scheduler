@@ -42,7 +42,7 @@ export default function Form(props) {
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button danger onCancel={props.onCancel()}>Cancel</Button>
+          <Button danger onCancel={props.onCancel}>Cancel</Button>
           <Button confirm >
             Save
           </Button>
@@ -53,5 +53,60 @@ export default function Form(props) {
     
   );
 }
-//onSave={props.onSave()}
-//onChange={props.onSave(student, interviewer)}
+// onSave={props.onSave()}
+// onChange={props.onSave(student, interviewer)}
+
+// const interview = props.onSave(name, interviewer)
+
+
+// props.bookInterview(appointment_id, interview)
+
+// thre data should now be avaialbe at the same level
+// as the state we want to update
+// props.save() {
+//   ...prev;
+//   props.bookInterview(appointment_id, interview) {
+
+//     //in our Application component.
+//     const appointment = {
+//       ...state.appointments[id],
+//       interview: { ...interview }
+//     };
+
+
+//     /* 
+//     Now that we have an appointment object, 
+//     we can move a level up and work on updating the appointments object. 
+//     We use the update pattern to replace the existing record with the matching id
+//     */
+
+//     const appointments = {
+//       ...state.appointments,
+//       [id]: appointment
+//     };
+
+//     setState({
+//       ...state,
+//       appointments
+//     });
+
+
+//     useEffect(() => {
+//       Promise.all([
+//         axios.put("/api/appointments/:id"),
+
+//       ])
+//     .then(all => {
+//         setState(() => ({
+//           ...state,
+//           SHOW: transition(SHOW)
+          
+//         }));
+
+
+//       });
+//     }, []);
+
+
+//   }
+// }

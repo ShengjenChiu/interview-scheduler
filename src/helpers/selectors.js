@@ -191,5 +191,6 @@ module.exports = {
   getAppointmentsForDay,
   getInterview,
   getInterviewersForDay,
-  bookInterview
+  bookInterview,
+  save
 };

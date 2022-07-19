@@ -21,7 +21,6 @@ export default function Appointment(props) {
   
   function onAdd() {
     transition(CREATE);
-    //console.log("clicked onAdd!");
   }
                                 
  
@@ -33,6 +32,10 @@ export default function Appointment(props) {
   //   transition(SAVING);
   // }
 
+  // function onComplete() {
+
+  // }
+  console.log('mode: ' + mode);
   return (
     <article className="appointment">
       
