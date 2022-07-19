@@ -42,7 +42,6 @@ export default function Application() {
     ])
   .then(all => {
     //setDays(response.data)
-
       setState(prev => ({
         ...prev, 
         days: all[0].data, 
@@ -50,6 +49,8 @@ export default function Application() {
         interviewers: all[2].data
 
       }));
+
+
     });
   }, []);
 
@@ -66,6 +67,7 @@ export default function Application() {
         id={appointment.id}
         time={appointment.time}
         interview={interview}
+        interviewers={state.interviewers}
         {...appointment}
       />
     );
