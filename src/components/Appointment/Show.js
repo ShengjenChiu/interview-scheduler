@@ -1,4 +1,5 @@
 import React from "react";
+import Application from "components/Application.js";
 
 export default function Show(props) {
   return (

@@ -4,6 +4,9 @@ import Header from "./Header";
 import Show from "./Show";
 import Empty from "./Empty";
 import Form from "./Form";
+// import confirm from "./confirm";
+// import Error from "./Error";
+// import Status from "./Status";
 import useVisualMode from "hooks/useVisualMode";
 import { getAppointmentsForDay, getInterview } from "helpers/selectors";
 
@@ -15,7 +18,20 @@ export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
                                 props.interview ? SHOW
                                 : EMPTY);
+  
+  function onAdd() {
+    transition(CREATE);
+    //console.log("clicked onAdd!");
+  }
+                                
+ 
+  function onCancel() {
+    back();
+  }
 
+  // function onSave() {
+  //   transition(SAVING);
+  // }
 
   return (
     <article className="appointment">
@@ -26,7 +42,7 @@ export default function Appointment(props) {
           && 
           <Empty
 
-            onClick={() => transition(CREATE)}
+            onClick={() => onAdd()}
 
           />
         }
@@ -37,17 +53,22 @@ export default function Appointment(props) {
           <Show 
             student={props.interview.student}
             interviewer={props.interview.interviewer}
+            // onEdit={onEdit}
+            // onDelete={onDelete}
           />
+          
         }
 
         {
           mode === 'CREATE'
           &&
-          <Form 
+          (<Form 
             interviewers={props.interviewers}
             onChange={() => transition(SHOW)}
-            onCancel={() => back()}
-          />
+            // onSave={() => onSave()}
+            onCancel={() => onCancel()}
+          />)
+          // console.log("this is form")
         }
 
         {/* {

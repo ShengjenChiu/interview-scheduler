@@ -1,11 +1,12 @@
 import React from "react";
 import InterviewerListItem from 'components/InterviewerListItem.js';
 import "components/InterviewerList.scss";
+import Application from "components/Application.js";
 
 export default function InterviewerList(props) {
-  let interviewersArr = [];
+const intArr = Object.values(props.interviewers);
 
-  interviewersArr = props.interviewers.map(_interviewer => {
+  const interviewersArr = intArr.map(_interviewer => {
 
     return (
       <InterviewerListItem

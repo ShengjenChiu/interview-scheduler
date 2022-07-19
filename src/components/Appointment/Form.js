@@ -1,19 +1,23 @@
 import React, {useState} from "react";
 import InterviewerList from '../InterviewerList.js';
 import Button from "../Button.js";
+import Application from "components/Application.js";
+//import useVisualMode from "hooks/useVisualMode";
+ 
 
 export default function Form(props) {
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] =useState(props.interviewer || null);
 
-  const reset = () => {
-    setStudent();
-    setInterviewer();
-  };
+  // const reset = () => {
+  //   setStudent();
+  //   setInterviewer();
+  // };
 
-  const cancel = () => {
-    props.onCancel = reset();
-  }
+  // const cancel = () => {
+  //   props.onCancel = reset();
+  // }
+
 
   return (
     <main className="appointment__card appointment__card--create">
@@ -38,8 +42,10 @@ export default function Form(props) {
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button danger onClick={cancel}>Cancel</Button>
-          <Button confirm onChange={props.onSave(student, interviewer)}>Save</Button>
+          <Button danger onCancel={props.onCancel()}>Cancel</Button>
+          <Button confirm >
+            Save
+          </Button>
         </section>
       </section>
     </main>
@@ -47,4 +53,5 @@ export default function Form(props) {
     
   );
 }
-
+//onSave={props.onSave()}
+//onChange={props.onSave(student, interviewer)}
