@@ -173,24 +173,9 @@ function getInterviewersForDay(state, day) {
   return resultsArr;
 }
 
-//change the local state to book an interview 
-function bookInterview(id, interview) {
-  console.log(id, interview);
-}
-
-//the child appointment component can call the action with the correct data
-//where user can save the interview appointmenet
-function save(name, interviewer) {
-  const interview = {
-    student: name,
-    interviewer
-  };
-}
 
 module.exports = {
   getAppointmentsForDay,
   getInterview,
-  getInterviewersForDay,
-  bookInterview,
-  save
+  getInterviewersForDay
 };

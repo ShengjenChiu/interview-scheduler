@@ -6,8 +6,13 @@ import Application from "components/Application.js";
  
 
 export default function Form(props) {
+  // let studentName = props.appointment.student;
+  // let interviewer = props.appointment.interviewer;
+
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] =useState(props.interviewer || null);
+
+  
 
   // const reset = () => {
   //   setStudent();
@@ -17,6 +22,8 @@ export default function Form(props) {
   // const cancel = () => {
   //   props.onCancel = reset();
   // }
+
+
 
 
   return (
@@ -42,8 +49,10 @@ export default function Form(props) {
       </section>
       <section className="appointment__card-right">
         <section className="appointment__actions">
-          <Button danger onCancel={props.onCancel}>Cancel</Button>
-          <Button confirm >
+          <Button danger onClick={() => props.onCancel()}>
+            Cancel
+          </Button>
+          <Button confirm onClick={() => props.onSave( student,interviewer)}>
             Save
           </Button>
         </section>

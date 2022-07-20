@@ -6,6 +6,7 @@ import axios from "axios";
 import { getAppointmentsForDay, getInterview, bookInterview, save } from "helpers/selectors";
 
 
+
 export default function Application() {
 
   // const [day, setDay] = useState('Monday');
@@ -25,11 +26,36 @@ export default function Application() {
   //to update the state with new day
   const setDay = day => setState({ ...state, day });
 
-  //to update the state with new days
-  // const setDays = (days) => {
-  //   // setState({ ...state, days });
-  //   setState(prev => ({ ...prev, days }));
-  // }
+  //change the local state to book an interview 
+  function bookInterview(id, interview) {
+    console.log(id, interview);
+
+    //in our Application component.
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    
+    return axios.put(`/api/appointments/${id}`, { 
+      interview
+    })
+    .then(() => {
+      setState({
+        ...state,
+        appointments
+      });
+      
+    });
+  
+
+  }
+
 
   // use effect to axios request data from API
   // and receive response from API
@@ -100,6 +126,7 @@ export default function Application() {
       </section>
       <section className="schedule">
         {schedulerArr}
+        <Appointment key="last" time="5pm" />
       </section>
     </main>
   );
