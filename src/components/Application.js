@@ -3,59 +3,81 @@ import Appointment from "./Appointment/index";
 import "components/Application.scss";
 import DayList from "./DayList";
 import axios from "axios";
-import { getAppointmentsForDay, getInterview, bookInterview, save } from "helpers/selectors";
-
+import { getAppointmentsForDay, getInterview } from "helpers/selectors";
+import useApplicationData from "hooks/useApplicationData";
 
 
 export default function Application() {
 
-  // const [day, setDay] = useState('Monday');
-  // const [days, setDays] = useState([]);
+  // const [state, setState] = useState({
+  //   day: "Monday",
+  //   days: [],
+  //   appointments: {},
+  //   interviewers: {}
+  // });
+
+  const {
+    state,
+    setState,
+    setDay,
+    bookInterview,
+    cancelInterview
+  } = useApplicationData();
+
+  // //click on a day in the sidebar
+  // //To update the day state and retainning the state for days and appointments
+  // //so, we need to create new object to be called
+  // //to update the state with new day
+  // const setDay = day => setState({ ...state, day });
 
 
-  const [state, setState] = useState({
-    day: "Monday",
-    days: [],
-    appointments: {},
-    interviewers: {}
-  });  
+  // //change the local state to book an interview 
+  // function bookInterview(id, interview) {
+  //   //console.log(id, interview);
 
-  //click on a day in the sidebar
-  //To update the day state and retainning the state for days and appointments
-  //so, we need to create new object to be called
-  //to update the state with new day
-  const setDay = day => setState({ ...state, day });
+  //   //received the individual appointment
+  //   const appointment = {
+  //     ...state.appointments[id],
+  //     interview: { ...interview }
+  //   };
 
-  //change the local state to book an interview 
-  function bookInterview(id, interview) {
-    console.log(id, interview);
+  //   //place the individual appointment into
+  //   //the appointments object
+  //   const appointments = {
+  //     ...state.appointments,
+  //     [id]: appointment
+  //   };
 
-    //in our Application component.
-    const appointment = {
-      ...state.appointments[id],
-      interview: { ...interview }
-    };
+  //   //send to api database and update it.
+  //   return axios.put(`/api/appointments/${id}`, { 
+  //     interview
+  //   })
+  //   .then(() => {
+  //     setState({
+  //       ...state,
+  //       appointments
+  //     });
+  //   });
+  // }
 
-    const appointments = {
-      ...state.appointments,
-      [id]: appointment
-    };
+  // function cancelInterview(id) {
 
-    
-    return axios.put(`/api/appointments/${id}`, { 
-      interview
-    })
-    .then(() => {
-      setState({
-        ...state,
-        appointments
-      });
-      
-    });
-  
+  //   console.log(id);
 
-  }
+    // return axios.delete(`/api/appointments/${id}`, {data: { interview }});
 
+    //     let num = Object.keys(appointments).length;
+
+    //     console.log(appointments.id);
+
+    //     for (let i; i < num; i++) {
+    //       if (id === appointments.id) {
+    //         appointments.interview = null;
+    //       }
+    //     }
+    // });
+   
+  // }
 
   // use effect to axios request data from API
   // and receive response from API
@@ -73,10 +95,7 @@ export default function Application() {
         days: all[0].data, 
         appointments: all[1].data,
         interviewers: all[2].data
-
       }));
-
-
     });
   }, []);
 
@@ -95,7 +114,7 @@ export default function Application() {
         interview={interview}
         interviewers={state.interviewers}
         bookInterview={bookInterview}
-        save={save}
+        cancelInterview={cancelInterview}
         {...appointment}
       />
     );

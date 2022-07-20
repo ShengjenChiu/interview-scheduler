@@ -4,7 +4,6 @@ export default function Empty(props) {
 
   return (
     <main className="appointment__add">
-      {console.log('Empty comp: ' + props.onClick)}
 
 
       <img

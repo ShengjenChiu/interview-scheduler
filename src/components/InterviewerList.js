@@ -1,7 +1,6 @@
 import React from "react";
 import InterviewerListItem from 'components/InterviewerListItem.js';
 import "components/InterviewerList.scss";
-import Application from "components/Application.js";
 
 export default function InterviewerList(props) {
 const intArr = Object.values(props.interviewers);

@@ -8,11 +8,11 @@ import Confirm from "./Confirm";
 import Error from "./Error";
 import Status from "./Status";
 import useVisualMode from "hooks/useVisualMode";
-import { getAppointmentsForDay, getInterview } from "helpers/selectors";
 
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
+const EDIT = "EDIT";
 const SAVING = "SAVING";
 const DELETING = "DELETING";
 const CONFIRM = "CONFIRM";
@@ -25,30 +25,39 @@ export default function Appointment(props) {
     props.interview ? SHOW
     : EMPTY);
 
-    function save(name, interviewer) {
-      const interview = {
-        student: name,
-        interviewer
-      };
+  const messageSave = "some error during saving";
+  const messageDelete = "some error during deleting";
 
-      transition(SAVING);
+  function save(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    };
 
-      //const interview = props.onSave(studnetNme, interviewer);
+    transition(SAVING);
     
-      props.bookInterview(props.id, interview)
-      .then(() => {
-        onCompleteS();
-      });
-    }
+    props.bookInterview(props.id, interview)
+    .then(() => {
+      onCompleteS();
+    })
+    .catch(error => transition(ERROR_SAVE, true));
+    ;
+  }
 
 
   //create new form
   function onAdd() {
     transition(CREATE);
   }          
- 
+   
+  //cancel current mode
   function onCancel() {
     back();
+  }
+  
+  //turn to edit mode
+  function onEdit() {
+    transition(EDIT);
   }
 
   // function onSave(name, interviewer) {
@@ -67,7 +76,16 @@ export default function Appointment(props) {
 
   //before deleting
   function onConfirm() {
-    transition(DELETING);
+    transition(DELETING, true);
+    props
+    .cancelInterview(props.id)
+    .then(() => {
+      onComplete();
+    })
+    .catch(error => {
+        transition(ERROR_DELETE, true)
+      }
+    );
   }
 
   //after deleting
@@ -83,22 +101,8 @@ export default function Appointment(props) {
           mode === 'EMPTY'
           && 
           <Empty
-
             onClick={() => onAdd()}
-
           />
-        }
-
-        { 
-          mode === 'SHOW'
-          && 
-          <Show 
-            student={props.interview.student}
-            interviewer={props.interview.interviewer}
-            // onEdit={onEdit}
-            // onDelete={onDelete}
-          />
-          
         }
 
         {
@@ -113,6 +117,31 @@ export default function Appointment(props) {
         }
 
         {
+          mode === 'SHOW'
+          && 
+          <Show
+            student={props.interview.student}
+            interviewer={
+              props.interview.interviewer
+            }
+            interviewers={props.interviewers}
+            onEdit={onEdit}
+            onDelete={onDelete}
+          />
+        }
+
+        {
+          mode === 'EDIT'
+          &&
+          (<Form 
+            interviewers={props.interviewers}
+            onChange={() => transition(SHOW)}
+            onSave={save}
+            onCancel={onCancel}
+          />)
+        } 
+
+        {
           mode === 'SAVING'
          &&
           <Status 
@@ -121,10 +150,28 @@ export default function Appointment(props) {
         }
 
         {
+          mode === 'CONFIRM'
+         &&
+          <Confirm
+            onCancel={onCancel}
+            onConfirm={onConfirm}
+          />
+        }
+
+        {
+          mode === 'DELETING'
+         &&
+          <Status
+            onComplete={onComplete}
+          />
+        } 
+
+        {
           mode === 'ERROR_SAVE'
          &&
-          <Error 
-          onCancel={onCancel}
+          <Error
+            message={messageSave}
+            onCancel={onCancel}
           />
         }
 
@@ -132,21 +179,10 @@ export default function Appointment(props) {
           mode === 'ERROR_DELETE'
          &&
           <Error 
-          onCancel={onCancel}
+            message={messageDelete}
+            onCancel={onCancel}
           />
         }
-
-
     </article>
-
   );
 }
-
-
-// {mode === EMPTY && <Empty onAdd={() => console.log("Clicked onAdd")} />}
-// {mode === SHOW && (
-//   <Show
-//     student={props.interview.student}
-//     interviewer={props.interview.interviewer}
-//   />
-// )}
