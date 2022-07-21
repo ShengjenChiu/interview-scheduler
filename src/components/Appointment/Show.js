@@ -4,15 +4,15 @@ export default function Show(props) {
   let num = Object.keys(props.interviewers).length;
   
   const getInterviewerName = function(id) {
-    for (let i = 0; i <  num; i++) {
-      //console.log(props.interviewers[i]);
+    // for (let i = 0; i <  num; i++) {
+    //   console.log(props.interviewers[i.toString()]["id"]);
 
-      if(id === props.interviewers[i]) {
+    //   if(id === props.interviewers[i.toString()]["id"]) {
 
-        console.log(props.interviewers);
-        return props.interviewers[i].name;
-      }
-    }
+    //     console.log(props.interviewers);
+    //     return props.interviewers[i.toString()]["name"];
+    //   }
+    // }
   }
 
   return (

@@ -6,10 +6,14 @@ export default function useVisualMode(initial) {
 
   function transition(next, replace = false) {
     if (replace) {
-      history.pop();
-      setHistory(history);
+      let newhistory = history.slice(0, -1).concat(next);
+
+      setHistory(newhistory);
+
+    } else {
+      setHistory((prev) => [...prev, next]);
+
     }
-    setHistory((prev) => [...prev, next]);
     setMode(next);
   }
 

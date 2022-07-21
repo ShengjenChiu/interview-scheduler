@@ -19,7 +19,7 @@ const CONFIRM = "CONFIRM";
 const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
 
-
+//function of the Appointment component
 export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW
@@ -50,7 +50,7 @@ export default function Appointment(props) {
     transition(CREATE);
   }          
    
-  //cancel current mode
+  //cancel current mode 
   function onCancel() {
     back();
   }
@@ -83,6 +83,9 @@ export default function Appointment(props) {
       onComplete();
     })
     .catch(error => {
+
+console.log('error canceling interview: ', error);
+
         transition(ERROR_DELETE, true)
       }
     );
@@ -93,6 +96,7 @@ export default function Appointment(props) {
     transition(EMPTY);
   }
 
+  //the rendering of the Appointment component
   return (
     <article className="appointment">
       
