@@ -25,8 +25,13 @@ export default function Appointment(props) {
     props.interview ? SHOW
     : EMPTY);
 
-  const messageSave = "some error during saving";
-  const messageDelete = "some error during deleting";
+  const messageSave = "Saving";
+  const messageSaveErr = "Could not book appointment";
+
+  const messageDelete = "Deleting";
+  const messageDeleteErr = "Could not cancel appointment";
+
+  const messageConfirm = "Are you sure you would like to delete?";
 
   function save(name, interviewer) {
     const interview = {
@@ -83,9 +88,6 @@ export default function Appointment(props) {
       onComplete();
     })
     .catch(error => {
-
-console.log('error canceling interview: ', error);
-
         transition(ERROR_DELETE, true)
       }
     );
@@ -98,8 +100,8 @@ console.log('error canceling interview: ', error);
 
   //the rendering of the Appointment component
   return (
-    <article className="appointment">
-      
+    <article className="appointment" data-testid="appointment"
+    >
         <Header time={props.time} />
         { 
           mode === 'EMPTY'
@@ -112,9 +114,9 @@ console.log('error canceling interview: ', error);
         {
           mode === 'CREATE'
           &&
-          (<Form 
+          (<Form
             interviewers={props.interviewers}
-            onChange={() => transition(SHOW)}
+            onChange={() => transition(SAVING)}
             onSave={save}
             onCancel={onCancel}
           />)
@@ -148,7 +150,8 @@ console.log('error canceling interview: ', error);
         {
           mode === 'SAVING'
          &&
-          <Status 
+          <Status
+            message={messageSave}
             onCompleteS={onCompleteS}
           />
         }
@@ -157,6 +160,7 @@ console.log('error canceling interview: ', error);
           mode === 'CONFIRM'
          &&
           <Confirm
+            messageConfirm={messageConfirm}
             onCancel={onCancel}
             onConfirm={onConfirm}
           />
@@ -166,6 +170,7 @@ console.log('error canceling interview: ', error);
           mode === 'DELETING'
          &&
           <Status
+            message={messageDelete}
             onComplete={onComplete}
           />
         } 
@@ -174,7 +179,7 @@ console.log('error canceling interview: ', error);
           mode === 'ERROR_SAVE'
          &&
           <Error
-            message={messageSave}
+            message={messageSaveErr}
             onCancel={onCancel}
           />
         }
@@ -183,7 +188,7 @@ console.log('error canceling interview: ', error);
           mode === 'ERROR_DELETE'
          &&
           <Error 
-            message={messageDelete}
+            message={messageDeleteErr}
             onCancel={onCancel}
           />
         }

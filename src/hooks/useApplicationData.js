@@ -43,7 +43,6 @@ export default function useApplicationData() {
 
   //change the local state to book an interview 
   function bookInterview(id, interview) {
-    //console.log(id, interview);
 
     //received the individual appointment
     const appointment = {

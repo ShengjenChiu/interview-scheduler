@@ -58,8 +58,6 @@ function getInterviewersForDay(state, day) {
     }
   }
 
-  console.log(resultsArr);
-
   return resultsArr;
 }
 
