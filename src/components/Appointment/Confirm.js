@@ -1,6 +1,7 @@
 import React from "react";
 import Button from "../Button.js";
 
+//the function for the Confirm component before deleting
 export default function Confirm(props) {
   return (
     <main className="appointment__card appointment__card--confirm">

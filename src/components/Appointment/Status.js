@@ -1,6 +1,9 @@
 import React from "react";
 
+//the function of the Status component
 export default function Status(props) {
+  
+  //the rendering of the Status component for both Saving and Deleting
   return (
     <main className="appointment__card appointment__card--status">
       <img

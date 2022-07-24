@@ -6,6 +6,9 @@ import DayListItem from "components/DayListItem";
 
 afterEach(cleanup);
 
+
+//tests for displaying number of interview spots remaining 
+
 it("renders without crashing", () => {
   render(<DayListItem />);
 });

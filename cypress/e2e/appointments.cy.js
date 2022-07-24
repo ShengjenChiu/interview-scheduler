@@ -1,4 +1,6 @@
+//Cypress tests for the Appointment component
 describe("Appointments", () => {
+  //setup the initial state for all the tests
   beforeEach(() => {
     cy.request("GET", "/api/debug/reset");
   

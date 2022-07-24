@@ -1,5 +1,6 @@
 import React from "react";
 
+//the function of the Show component
 export default function Show(props) {
 
   const getInterviewerName = function(id) {
@@ -8,6 +9,7 @@ export default function Show(props) {
     }
   }
 
+  //the rendering of the Show component
   return (
     <main className="appointment__card appointment__card--show">
       <section className="appointment__card-left">

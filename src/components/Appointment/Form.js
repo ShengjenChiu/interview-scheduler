@@ -2,14 +2,15 @@ import React, {useState} from "react";
 import InterviewerList from '../InterviewerList.js';
 import Button from "../Button.js";
  
-
+//the function of the Form component
 export default function Form(props) {
 
   const [student, setStudent] = useState(props.student || "");
   const [interviewer, setInterviewer] =useState(props.interviewer || null);
 
   const [error, setError] = useState("");
-
+  
+  //To handle errors of both student and interviewer
   function validate() {
     if (student === "") {
       setError("Student name cannot be blank");
@@ -24,12 +25,14 @@ export default function Form(props) {
     props.onSave(student, interviewer);
   }
 
+  //To reset both student and interviewer
   function cancel() {
     setStudent('');
     setInterviewer(null);
     props.onCancel();
   }
 
+  //render the Form webpage
   return (
     <main className="appointment__card appointment__card--create">
       <section className="appointment__card-left">
@@ -57,7 +60,6 @@ export default function Form(props) {
         />
 
       </section>
-
 
       <section className="appointment__card-right">
         <section className="appointment__actions">

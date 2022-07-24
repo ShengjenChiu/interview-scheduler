@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 
 //function of the cumston hook useApplicationData
@@ -14,15 +14,8 @@ export default function useApplicationData() {
   //to create new objects to be called to update the state with new day
   const setDay = day => setState({ ...state, day });
 
-
-  //variable that keep track of number of spots available for each day.
-  //let availSpots = 0;
-
-
+  //keep track of correct and updated number of interview spots available 
   function spotsAvailDay(newState, newAppointments) {
-    // const numDays = state.days.length;
-    // const numAppoi = 5;
-    // return spotsAvail;
     
     return newState.days.map((day) => {
       let spotsAvail = 0;

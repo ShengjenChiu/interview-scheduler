@@ -6,6 +6,8 @@ import Button from "components/Button";
 
 afterEach(cleanup);
 
+//test for all button functionalities
+
 it("renders without crashing", () => {
   render(<Button />);
 });

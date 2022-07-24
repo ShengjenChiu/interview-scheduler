@@ -20,6 +20,7 @@ import Status from "components/Appointment/Status.js";
 import Error from "components/Appointment/Error.js";
 import Form from "components/Appointment/Form.js";
 
+//test story for the Button
 storiesOf("Button", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -36,6 +37,7 @@ storiesOf("Button", module)
     </Button>
   ));
 
+//test story for the DayListItem
 storiesOf("DayListItem", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -47,6 +49,7 @@ storiesOf("DayListItem", module)
     <DayListItem name="Tuesday" setDay={action("setDay")} spots={5} />
   ));
 
+//mock data for a days array
 const days = [
   {
     id: 1,
@@ -64,7 +67,8 @@ const days = [
     spots: 0,
   },
 ];
-  
+
+//test story for the DayList
 storiesOf("DayList", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }],
@@ -79,12 +83,14 @@ storiesOf("DayList", module)
     <DayList days={days} value={"Wednesday"} onChange={action("setDay")} />
   ));
 
-  const interviewer = {
-    id: 1,
-    name: "Sylvia Palmer",
-    avatar: "https://i.imgur.com/LpaY82x.png"
-  };
-  
+//mock data for an interviewer
+const interviewer = {
+  id: 1,
+  name: "Sylvia Palmer",
+  avatar: "https://i.imgur.com/LpaY82x.png"
+};
+
+//test story for the InterviewerListItem
 storiesOf("InterviewerListItem", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -113,6 +119,7 @@ storiesOf("InterviewerListItem", module)
     />
   ));
 
+//mock data for interviewers
 const interviewers = [
   { id: 1, name: "Sylvia Palmer", avatar: "https://i.imgur.com/LpaY82x.png" },
   { id: 2, name: "Tori Malcolm", avatar: "https://i.imgur.com/Nmx0Qxo.png" },
@@ -120,7 +127,8 @@ const interviewers = [
   { id: 4, name: "Cohana Roy", avatar: "https://i.imgur.com/FK8V841.jpg" },
   { id: 5, name: "Sven Jones", avatar: "https://i.imgur.com/twYrpay.jpg" }
 ];
-  
+
+//test story for the InterviewerList
 storiesOf("InterviewerList", module)
   .addParameters({
     backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
@@ -147,12 +155,12 @@ storiesOf("InterviewerList", module)
     />
   ));
 
-
+//mock data for a studnet
 const student = [
   { id: 1, name: "Lydia Miller-Jones" }
 ];
 
-
+//test story for the Appointment
 storiesOf("Appointment", module)
   .addParameters({
     backgrounds: [{ name: "white", value: "#fff", default: true }]

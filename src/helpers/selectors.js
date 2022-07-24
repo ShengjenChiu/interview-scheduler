@@ -1,6 +1,4 @@
-//import React from 'react';
-
-//returns an array of appointments for that day
+//returns an array of appointments for one day
 function getAppointmentsForDay(state, day) {
   const resultsArr = [];
   const daysObj = state.days;

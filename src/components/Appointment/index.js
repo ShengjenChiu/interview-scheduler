@@ -9,6 +9,7 @@ import Error from "./Error";
 import Status from "./Status";
 import useVisualMode from "hooks/useVisualMode";
 
+//the visual mode constants
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
@@ -19,7 +20,7 @@ const CONFIRM = "CONFIRM";
 const ERROR_SAVE = "ERROR_SAVE";
 const ERROR_DELETE = "ERROR_DELETE";
 
-//function of the Appointment component
+//the function of the Appointment component with connections of its children nodes
 export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW
@@ -33,6 +34,7 @@ export default function Appointment(props) {
 
   const messageConfirm = "Are you sure you would like to delete?";
 
+  //the function of saving the interview
   function save(name, interviewer) {
     const interview = {
       student: name,
@@ -64,10 +66,6 @@ export default function Appointment(props) {
   function onEdit() {
     transition(EDIT);
   }
-
-  // function onSave(name, interviewer) {
-  //   transition(SAVING);
-  // }
   
   //after saving
   function onCompleteS() {
@@ -98,7 +96,7 @@ export default function Appointment(props) {
     transition(EMPTY);
   }
 
-  //the rendering of the Appointment component
+  //the rendering of the Appointment component with its children with conditions respectively
   return (
     <article className="appointment" data-testid="appointment"
     >

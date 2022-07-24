@@ -1,16 +1,16 @@
 import React from "react";
 import axios from "axios";
 
-import {render, cleanup, fireEvent, getByText, prettyDOM, getAllByTestId, getByAltText, getByPlaceholderText, queryByText, queryByAltText } from "@testing-library/react";
-import { waitForElement, getError } from "@testing-library/react";
+import {render, cleanup, fireEvent, getByText, getAllByTestId, getByAltText, getByPlaceholderText, queryByText, queryByAltText } from "@testing-library/react";
+import { waitForElement, } from "@testing-library/react";
 
 import Application from "components/Application";
 
 afterEach(cleanup);
 
-
+//test for Application component
 describe("Application", () => {
-  
+  //test for changes the schedule when a new day is selected
   it("changes the schedule when a new day is selected", async () => {
     const { getByText } = render(<Application />);
   
@@ -21,11 +21,11 @@ describe("Application", () => {
     expect(getByText("Leopold Silvers")).toBeInTheDocument();
   });
 
+  //test for books an interview
   it("loads data, books an interview and reduces the spots remaining for the first day by 1", async () => {
     axios.put.mockResolvedValueOnce("it works!");
 
-
-    const { container, debug } = render(<Application />);
+    const { container } = render(<Application />);
     
     await waitForElement(() => getByText(container, "Archie Cohen"));
     
@@ -42,10 +42,6 @@ describe("Application", () => {
     
     fireEvent.click(getByText(appointment, "Save"));
 
-    // console.log('prettyDOM(appointment): ', prettyDOM(appointment));
-
-    // console.log('debug(appointment): ', debug(appointment));
-
     expect(getByText(appointment, "Saving")).toBeInTheDocument();
 
     await waitForElement(() => getByText(appointment, "Lydia Miller-Jones"));
@@ -55,12 +51,11 @@ describe("Application", () => {
       queryByText(day, "Monday")
     );
     
-    // console.log(prettyDOM(day));
-
     expect(getByText(day, "no spots remaining")).toBeInTheDocument();
 
   });
 
+  //test for cancels an interview
   it("loads data, cancels an interview and increases the spots remaining for Monday by 1", async () => {
     axios.delete.mockResolvedValueOnce("it works!");
 
@@ -99,6 +94,7 @@ describe("Application", () => {
     expect(getByText(day, "2 spots remaining")).toBeInTheDocument();
   });
 
+  //test for edits an interview
   it("loads data, edits an interview and keeps the spots remaining for Monday the same", async () => {
     axios.put.mockResolvedValueOnce("it works!");
 
@@ -126,7 +122,7 @@ describe("Application", () => {
 
     await waitForElement(() => getByText(appointment, "Lydia Miller-Jones"));
 
-    // 8. Check that the DayListItem with the text "Monday" with no change of the text " spots remaining".
+    //Check that the DayListItem with the text "Monday" with no change of the text " spots remaining".
     const day = getAllByTestId(container, "day").find(day =>
       queryByText(day, "Monday")
     );
@@ -134,7 +130,7 @@ describe("Application", () => {
     expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
   });
 
-  /* test number five */
+  /* test number five for the saving error*/
   it.only("shows the save error when failing to save an appointment", async () => {
     // axios.put.mockRejectedValueOnce();
     // 1. Render the Application.
@@ -159,6 +155,7 @@ describe("Application", () => {
     // expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
   });
   
+  //test for the deleting error
   it("shows the delete error when failing to delete an existing appointment", async () => {
     // axios.delete.mockRejectedValueOnce();
     // // 1. Render and wait for the error message.

@@ -1,13 +1,13 @@
 import React from "react";
 import InterviewerListItem from 'components/InterviewerListItem.js';
 import "components/InterviewerList.scss";
-import PropTypes from 'prop-types';
 
+//the function of the InterviewerList component
 export default function InterviewerList(props) {
 const intArr = Object.values(props.interviewers);
 
+  //the array of InterviewerList's child InterviewerListItem component
   const interviewersArr = intArr.map(_interviewer => {
-
     return (
       <InterviewerListItem
         key={_interviewer.id}
@@ -18,7 +18,8 @@ const intArr = Object.values(props.interviewers);
       />
     );
   });
-
+  
+  //the rendering of the InterviewerList component
   return (
     <section className="interviewers">
       <h4 className="interviewers__header text--light">Interviewer</h4>
@@ -29,7 +30,3 @@ const intArr = Object.values(props.interviewers);
   
   );
 }
-
-// InterviewerList.propTypes = {
-//   interviewers: PropTypes.object.isRequired //array?
-// };

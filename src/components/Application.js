@@ -6,7 +6,7 @@ import axios from "axios";
 import { getAppointmentsForDay, getInterview } from "helpers/selectors";
 import useApplicationData from "hooks/useApplicationData";
 
-//function of the Application component
+//the function of the Application component
 export default function Application() {
   //objects fetched from the cumston hook useApplicationData
   const {
@@ -57,7 +57,8 @@ export default function Application() {
     );
   });
 
-  //the rendering of the Application component
+  //the rendering of the Application component with 
+  //its children Daylist component and Appointment component
   return (
     <main className="layout">
       <section className="sidebar">
