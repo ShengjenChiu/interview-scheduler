@@ -14,3 +14,10 @@ http://localhost:8000/coverage/lcov-report/index.html
 
 
 http://localhost:8001/api/debug/reset
+
+
+
+.........................................................
+The main local host url:
+
+http://localhost:8000/
