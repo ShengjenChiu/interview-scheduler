@@ -1,0 +1,16 @@
+http://localhost:8001/api/days
+
+
+http://localhost:8001/api/appointments
+
+
+http://localhost:8001/api/interviewers
+
+
+.........................................................
+Cypress:
+
+http://localhost:8000/coverage/lcov-report/index.html
+
+
+http://localhost:8001/api/debug/reset
